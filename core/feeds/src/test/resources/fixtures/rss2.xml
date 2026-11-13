@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: 2026 Saalim Quadri <danascape@gmail.com> -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Example Times &amp; Co</title>
+    <link>https://example.com/</link>
+    <description>News</description>
+    <image><url>https://example.com/logo.png</url><title>Example</title><link>https://example.com/</link></image>
+    <item>
+      <title><![CDATA[Monsoon reaches Kerala three days early]]></title>
+      <link>https://example.com/india/monsoon-kerala?utm_source=rss&amp;utm_medium=feed&amp;id=42</link>
+      <guid isPermaLink="false">ex-42</guid>
+      <description><![CDATA[<p>The monsoon&nbsp;arrived on <b>Friday</b>.</p><img src="https://example.com/px.gif" width="1" height="1">]]></description>
+      <content:encoded><![CDATA[<p>The monsoon arrived on Friday, the weather office said.</p><img src="/img/rain.jpg" width="800">]]></content:encoded>
+      <dc:creator>Asha Rao</dc:creator>
+      <pubDate>Fri, 30 May 2026 09:15:00 +0530</pubDate>
+    </item>
+    <item>
+      <title>Markets close higher</title>
+      <link>https://example.com/business/markets</link>
+      <description>Sensex up 1%</description>
+      <media:content url="https://cdn.example.com/markets.jpg" medium="image" />
+      <pubDate>Fri, 30 May 2026 16:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -33,4 +33,8 @@ rootProject.name = "Pvot Feed"
 
 include(":app")
 
+include(":core:model")
+
+include(":core:feeds")
+
 providers.gradleProperty("pvotLibDir").orNull?.let { includeBuild(it) }

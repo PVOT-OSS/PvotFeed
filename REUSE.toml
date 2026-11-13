@@ -23,3 +23,9 @@ path = ["gradlew", "gradlew.bat"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2015 the original authors"
 SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["app/src/main/assets/packs/*.json", "core/*/src/test/resources/fixtures/*.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Saalim Quadri <danascape@gmail.com>"
+SPDX-License-Identifier = "Apache-2.0"

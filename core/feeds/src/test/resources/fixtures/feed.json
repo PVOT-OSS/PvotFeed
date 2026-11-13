@@ -1,0 +1,16 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "JSON Example",
+  "home_page_url": "https://json.example.org/",
+  "items": [
+    {
+      "id": "1",
+      "url": "https://json.example.org/one?fbclid=xyz",
+      "title": "One",
+      "content_html": "<p>Hello <em>there</em></p>",
+      "image": "https://json.example.org/one.png",
+      "date_published": "2026-05-28T12:00:00Z",
+      "authors": [{ "name": "Ravi" }]
+    }
+  ]
+}
