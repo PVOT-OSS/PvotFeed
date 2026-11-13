@@ -1,0 +1,38 @@
+# SPDX-FileCopyrightText: 2026 Saalim Quadri <danascape@gmail.com>
+# SPDX-License-Identifier: Apache-2.0
+
+PackageName: org.prauga.feed
+Name: Pvot Feed
+Summary: The day's news in one calm feed that ends
+License: Apache-2.0
+AuthorName: Saalim Quadri
+SourceCode: https://github.com/PVOT-OSS/PvotFeed
+IssueTracker: https://github.com/PVOT-OSS/PvotFeed/issues
+WebSite: ""
+Categories:
+  - News
+CurrentVersion: "1.0.0"
+CurrentVersionCode: 10000
+Description: |
+  Pvot Feed groups articles about the same event from many outlets into one
+  story, shows the best new stories of the day and then says you're caught
+  up. Sources are RSS, Atom and JSON feeds from any site, YouTube, Reddit,
+  Mastodon and Bluesky, plus public mailing list archives such as
+  lore.kernel.org, threaded. No account, no ads, no tracking; the phone
+  fetches everything straight from each source.
+
+RepoType: git
+Repo: https://github.com/PVOT-OSS/PvotFeed.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 10000
+    commit: v1.0.0
+    subdir: app
+    srclibs:
+      - PvotLib@v1.0.0
+    prebuild:
+      - sed -i -e '/pvot-oss.github.io/,+2d' ../settings.gradle.kts
+      - echo "pvotLibDir=$$PvotLib$$" >> ../gradle.properties
+    gradle:
+      - yes

@@ -1,0 +1,35 @@
+Pvot Feed shows the day's news as stories, not an endless pile of links. When several outlets report the same event, you see it once, with every outlet's take one tap away. When you have seen what's new, the feed says so and ends.
+
+Stories, not links
+• Articles about the same event become one card: "The Hindu +7"
+• See how each outlet headlined it, and read any of them
+• Stories you have already seen come back marked "Updated" when there is something new
+
+A feed that ends
+• The 50 best new stories of the last day, ranked by how widely they are reported and how fresh they are
+• Then "You're caught up". More stories are there if you want them, never pushed at you
+• No alerts, no badges, no autoplay
+
+Your sources
+• Start in seconds: pick India and/or World and the topics you care about from hand-picked outlets across the spectrum
+• Add any news site, blog, YouTube channel, subreddit, Mastodon or Bluesky account by pasting or sharing a link
+• Hide an outlet or mute a word in two taps
+• Import and export your sources as OPML
+
+A reader made for reading
+• Full articles in a clean page, without ads, pop-ups or trackers
+• Articles you opened read offline
+• Adjustable text size, dark theme
+
+Mailing lists
+• Follow public mailing list archives such as lore.kernel.org
+• Messages grouped into threads and patch series, with reply order, folded quotes and coloured patches
+• Kept apart from the news, with their own unread count
+
+Private and open
+• No account, no ads, no analytics, no tracking
+• No server in between: your phone fetches the news straight from each outlet
+• Everything you read, hide or mute stays on your phone
+• Free and open source under the Apache-2.0 licence: github.com/PVOT-OSS/PvotFeed
+
+News content belongs to the outlets that publish it. Pvot Feed links to the original of every article.

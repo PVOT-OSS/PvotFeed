@@ -1,0 +1,1 @@
+First release: one feed of grouped stories from Indian and world outlets that ends when you are caught up, a clean offline reader, sources from any link (sites, YouTube, Reddit, Mastodon, Bluesky), muting, OPML, and a mailing lists section with threads and patches.
