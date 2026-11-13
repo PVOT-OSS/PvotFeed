@@ -1,0 +1,25 @@
+# SPDX-FileCopyrightText: 2026 Saalim Quadri <danascape@gmail.com>
+# SPDX-License-Identifier: Apache-2.0
+
+version = 1
+SPDX-PackageName = "Pvot Feed"
+SPDX-PackageSupplier = "Saalim Quadri <danascape@gmail.com>"
+SPDX-PackageDownloadLocation = "https://github.com/PVOT-OSS/PvotFeed"
+
+[[annotations]]
+path = ["app/src/main/res/mipmap-*/*.webp", "core/*/schemas/**", "gradle/gradle-daemon-jvm.properties"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Saalim Quadri <danascape@gmail.com>"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "gradle/wrapper/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2007-2023 Gradle, Inc."
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["gradlew", "gradlew.bat"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2015 the original authors"
+SPDX-License-Identifier = "Apache-2.0"

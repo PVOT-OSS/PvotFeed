@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<!--
+     SPDX-FileCopyrightText: 2026 Saalim Quadri <danascape@gmail.com>
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.PvotFeed" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.PvotFeed" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowSplashScreenBackground" tools:targetApi="31">@color/splash_background</item>
+    </style>
 </resources>
