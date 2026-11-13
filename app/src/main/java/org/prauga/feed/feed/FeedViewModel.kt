@@ -45,6 +45,9 @@ class FeedViewModel(private val feed: FeedRepository, private val sources: Sourc
 
     private var latest = FeedSnapshot.Empty
     private var reading = false
+
+    /** Every article on offer when the list was last replaced; stories with none of these are new. */
+    private var known = emptySet<Long>()
     private val pendingSeen = mutableSetOf<Long>()
     private var seenJob: Job? = null
 
@@ -110,6 +113,7 @@ class FeedViewModel(private val feed: FeedRepository, private val sources: Sourc
     private fun apply(snapshot: FeedSnapshot) {
         _state.update { current ->
             if (!reading || current.stories.isEmpty()) {
+                known = (snapshot.fresh + snapshot.earlier).flatMap { s -> s.articles.map { it.article.id } }.toSet()
                 current.copy(
                     stories = snapshot.fresh,
                     earlier = snapshot.earlier,
@@ -125,7 +129,10 @@ class FeedViewModel(private val feed: FeedRepository, private val sources: Sourc
                         .mapNotNull { shown -> byArticle[shown.lead.article.id] }
                         .distinctBy { it.id }
                 val keptIds = kept.map { it.id }.toSet()
-                val newOnes = snapshot.fresh.count { it.id !in keptIds && !it.seen }
+                val newOnes =
+                    snapshot.fresh.count { story ->
+                        story.id !in keptIds && story.articles.none { it.article.id in known }
+                    }
                 current.copy(stories = kept, earlier = snapshot.earlier.filter { it.id !in keptIds }, newCount = newOnes, loaded = true)
             }
         }
