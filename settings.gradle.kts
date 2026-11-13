@@ -39,4 +39,6 @@ include(":core:feeds")
 
 include(":core:network")
 
+include(":core:reader")
+
 providers.gradleProperty("pvotLibDir").orNull?.let { includeBuild(it) }

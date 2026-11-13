@@ -8,6 +8,7 @@ android { namespace = "org.prauga.feed.core.feeds" }
 dependencies {
     api(project(":core:model"))
     implementation(libs.jsoup)
+    compileOnly(libs.jspecify)
     implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.kxml2)
 }
