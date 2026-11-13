@@ -7,6 +7,7 @@ import android.content.Context
 import android.util.Xml
 import org.prauga.feed.core.data.FeedPreferences
 import org.prauga.feed.core.data.FeedRepository
+import org.prauga.feed.core.data.ListsRepository
 import org.prauga.feed.core.data.ReaderRepository
 import org.prauga.feed.core.data.SourceRepository
 import org.prauga.feed.core.data.StarterPacks
@@ -28,4 +29,5 @@ class AppContainer(context: Context) {
     val sources =
         SourceRepository(database, fetcher, parser, Opml { Xml.newPullParser() }, packs, feed, preferences)
     val reader = ReaderRepository(database, fetcher)
+    val lists = ListsRepository(database, fetcher, parser, feed)
 }

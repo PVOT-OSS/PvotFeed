@@ -58,6 +58,7 @@ import androidx.lifecycle.compose.LifecycleStartEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.prauga.pvot.coreui.PvotEmptyContent
 import com.prauga.pvot.designsystem.components.PvotBottomSheet
+import com.prauga.pvot.designsystem.components.PvotCard
 import com.prauga.pvot.designsystem.components.PvotDialog
 import com.prauga.pvot.designsystem.components.PvotDialogAction
 import com.prauga.pvot.designsystem.components.PvotDialogActionStyle
@@ -90,6 +91,7 @@ fun FeedScreen(
     onOpenStory: (Story) -> Unit,
     onOpenSources: () -> Unit,
     onOpenSettings: () -> Unit,
+    onOpenLists: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val listState = rememberLazyListState()
@@ -147,6 +149,7 @@ fun FeedScreen(
                 modifier = Modifier.fillMaxSize(),
             ) {
                 item(key = HEADER) { Header(state) }
+                state.listsUnread?.let { unread -> item(key = LISTS) { ListsCard(unread, onOpenLists) } }
                 when {
                     !state.hasSources ->
                         item(key = "empty") {
@@ -300,6 +303,23 @@ private fun Header(state: FeedUiState) {
 }
 
 @Composable
+private fun ListsCard(unread: Int, onClick: () -> Unit) {
+    PvotCard(modifier = Modifier.fillMaxWidth(), onClick = onClick) {
+        Row(Modifier.padding(horizontal = 16.dp, vertical = 14.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Icon(painterResource(R.drawable.ic_mail), null, tint = MaterialTheme.colorScheme.primary)
+            Column(Modifier.weight(1f)) {
+                Text(stringResource(R.string.lists_title), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurface)
+                Text(
+                    if (unread > 0) pluralStringResource(R.plurals.lists_card_unread, unread, unread) else stringResource(R.string.lists_card_quiet),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = if (unread > 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
+}
+
+@Composable
 private fun NewStoriesPill(count: Int, onClick: () -> Unit) {
     Surface(
         shape = CircleShape,
@@ -327,6 +347,7 @@ private fun SkeletonCard(lead: Boolean) {
 }
 
 private const val HEADER = "header"
+private const val LISTS = "lists"
 private const val CAUGHT_UP = "caught-up"
 private const val SKELETONS = 5
 private const val STORY_OFFSET = 1

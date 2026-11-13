@@ -11,10 +11,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.prauga.feed.core.data.FeedRepository
 import org.prauga.feed.core.data.FeedSnapshot
+import org.prauga.feed.core.data.ListsRepository
 import org.prauga.feed.core.data.RefreshState
 import org.prauga.feed.core.data.SourceRepository
 import org.prauga.feed.core.model.Source
@@ -29,6 +31,8 @@ data class FeedUiState(
     val loaded: Boolean = false,
     val hasSources: Boolean = true,
     val showEarlier: Boolean = false,
+    /** Followed mailing lists, and how many of their threads have unread messages; null when none. */
+    val listsUnread: Int? = null,
     /** A refresh the reader asked for by pulling down, as opposed to an automatic one. */
     val pulling: Boolean = false,
 )
@@ -38,8 +42,11 @@ data class FeedUiState(
  * after that, stories on screen only update in place and new ones wait behind a "new stories"
  * button.
  */
-class FeedViewModel(private val feed: FeedRepository, private val sources: SourceRepository) :
-    ViewModel() {
+class FeedViewModel(
+    private val feed: FeedRepository,
+    private val sources: SourceRepository,
+    private val lists: ListsRepository,
+) : ViewModel() {
     private val _state = MutableStateFlow(FeedUiState())
     val state: StateFlow<FeedUiState> = _state.asStateFlow()
 
@@ -64,6 +71,12 @@ class FeedViewModel(private val feed: FeedRepository, private val sources: Sourc
             }
         }
         viewModelScope.launch { _state.update { it.copy(hasSources = sources.hasSources()) } }
+        viewModelScope.launch {
+            combine(lists.observeLists(), lists.observeUnreadThreads()) { followed, unread ->
+                    if (followed.isEmpty()) null else unread
+                }
+                .collect { count -> _state.update { it.copy(listsUnread = count) } }
+        }
     }
 
     fun refreshIfStale() {

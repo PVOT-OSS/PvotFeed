@@ -28,4 +28,20 @@
         <item quantity="one">Imported %1$d source</item>
         <item quantity="other">Imported %1$d sources</item>
     </plurals>
+    <plurals name="lists_card_unread">
+        <item quantity="one">%1$d thread with new messages</item>
+        <item quantity="other">%1$d threads with new messages</item>
+    </plurals>
+    <plurals name="lists_messages">
+        <item quantity="one">%1$d message</item>
+        <item quantity="other">%1$d messages</item>
+    </plurals>
+    <plurals name="lists_new">
+        <item quantity="one">%1$d new</item>
+        <item quantity="other">%1$d new</item>
+    </plurals>
+    <plurals name="lists_patches">
+        <item quantity="one">%1$d patch</item>
+        <item quantity="other">%1$d patches</item>
+    </plurals>
 </resources>

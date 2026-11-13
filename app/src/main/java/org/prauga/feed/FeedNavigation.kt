@@ -15,6 +15,8 @@ import androidx.navigation3.ui.NavDisplay
 import kotlinx.serialization.Serializable
 import org.prauga.feed.feed.FeedScreen
 import org.prauga.feed.feed.FeedViewModel
+import org.prauga.feed.lists.ListsScreen
+import org.prauga.feed.lists.ThreadScreen
 import org.prauga.feed.reader.ReaderScreen
 import org.prauga.feed.reader.ReaderViewModel
 import org.prauga.feed.settings.AboutScreen
@@ -36,6 +38,10 @@ import org.prauga.feed.story.StoryScreen
 @Serializable data class SourcesKey(val link: String? = null) : NavKey
 
 @Serializable data object TopicsKey : NavKey
+
+@Serializable data object ListsKey : NavKey
+
+@Serializable data class ThreadKey(val key: String, val messageId: Long) : NavKey
 
 @Serializable data object SettingsKey : NavKey
 
@@ -82,7 +88,8 @@ fun FeedNavigation(container: AppContainer, sharedLink: String?, onSharedLinkHan
                 }
                 entry<FeedKey> {
                     FeedScreen(
-                        viewModel = viewModel { FeedViewModel(container.feed, container.sources) },
+                        viewModel = viewModel { FeedViewModel(container.feed, container.sources, container.lists) },
+                        onOpenLists = { backStack.add(ListsKey) },
                         onOpenStory = { story ->
                             if (story.articles.size == 1) backStack.add(ReaderKey(story.lead.article.id))
                             else backStack.add(StoryKey(story.id))
@@ -126,6 +133,15 @@ fun FeedNavigation(container: AppContainer, sharedLink: String?, onSharedLinkHan
                     )
                 }
                 entry<AboutKey> { AboutScreen(onBack = back) }
+                entry<ListsKey> {
+                    ListsScreen(
+                        lists = container.lists,
+                        onOpenThread = { backStack.add(ThreadKey(it.key, it.messages.first().id)) },
+                        onAddList = { backStack.add(SourcesKey()) },
+                        onBack = back,
+                    )
+                }
+                entry<ThreadKey> { key -> ThreadScreen(key.key, key.messageId, container.lists, onBack = back) }
             },
     )
 }
