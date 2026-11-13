@@ -14,7 +14,8 @@ data class Article(
     val imageUrl: String?,
     val author: String?,
     val publishedAt: Instant,
-    val storyId: Long? = null,
+    val seen: Boolean = false,
+    val read: Boolean = false,
 )
 
 /** An article together with the source it came from, as the screens show it. */
@@ -30,7 +31,10 @@ data class Story(
     val articles: List<SourcedArticle>,
     val firstSeen: Instant,
     val lastUpdated: Instant,
+    /** Every article in the story has been on screen. */
     val seen: Boolean = false,
+    /** Some articles were seen before, others arrived since. */
+    val updated: Boolean = false,
 ) {
     val outlets: List<Source>
         get() = articles.map { it.source }.distinctBy { it.id }

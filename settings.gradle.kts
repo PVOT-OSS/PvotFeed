@@ -43,4 +43,6 @@ include(":core:reader")
 
 include(":core:stories")
 
+include(":core:data")
+
 providers.gradleProperty("pvotLibDir").orNull?.let { includeBuild(it) }

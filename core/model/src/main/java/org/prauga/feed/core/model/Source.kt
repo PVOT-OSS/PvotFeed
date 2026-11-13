@@ -39,5 +39,8 @@ data class Source(
     val region: Region? = null,
     val topic: Topic? = null,
     val fromPack: Boolean = false,
+    val muted: Boolean = false,
     val addedAt: Instant = Instant.EPOCH,
+    val lastSuccessAt: Instant? = null,
+    val lastError: String? = null,
 )
