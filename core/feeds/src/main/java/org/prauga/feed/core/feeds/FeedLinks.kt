@@ -15,7 +15,7 @@ object FeedLinks {
     /** Normalises typed text into a URL, or null when it can't be one. */
     fun normalise(input: String): String? {
         var text = input.trim()
-        Regex("https?://\\S+").find(text)?.let { text = it.value }
+        Regex("https?://\\S+").find(text)?.let { text = it.value.trimEnd('.', ',', ';', ':', '!', '?', ')', ']', '\'', '"') }
         if (text.isEmpty() || ' ' in text) return null
         if (!text.startsWith("http://") && !text.startsWith("https://")) text = "https://$text"
         return try {

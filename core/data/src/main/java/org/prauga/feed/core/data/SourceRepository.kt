@@ -153,7 +153,7 @@ class SourceRepository(
         val result = fetcher.get(url) as? FetchResult.Body ?: return null
         return try {
             val feed = parser.parse(result.bytes, result.finalUrl)
-            if (feed.items.isEmpty()) null else url to feed
+            url to feed
         } catch (_: FeedFormatException) {
             null
         }

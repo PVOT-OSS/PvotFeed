@@ -46,6 +46,7 @@ class HelpersTest {
             "https://bbc.co.uk/news",
             FeedLinks.normalise("Read this https://bbc.co.uk/news"),
         )
+        assertEquals("https://bbc.co.uk/news", FeedLinks.normalise("(see https://bbc.co.uk/news)."))
         assertEquals(
             "https://www.youtube.com/feeds/videos.xml?channel_id=UC123",
             FeedLinks.direct("https://www.youtube.com/channel/UC123").single().url,
