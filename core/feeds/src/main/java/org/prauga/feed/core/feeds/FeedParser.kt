@@ -101,6 +101,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
             var description: String? = null
             var content: String? = null
             var image: String? = null
+            var imageWidth = -1
             var author: String? = null
             var date: String? = null
             while (!(p.next() == XmlPullParser.END_TAG && p.depth == depth)) {
@@ -139,7 +140,12 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
                                     medium == "image" ||
                                     type.startsWith("image") ||
                                     (medium == null && type.isEmpty() && looksLikeImage(href))
-                            if (isImage && href != null && image == null) image = href
+                            // Feeds often list one picture in several sizes; keep the widest.
+                            val width = p.getAttributeValue(null, "width")?.toIntOrNull() ?: 0
+                            if (isImage && href != null && (image == null || width > imageWidth)) {
+                                image = href
+                                imageWidth = width
+                            }
                         }
                 }
             }

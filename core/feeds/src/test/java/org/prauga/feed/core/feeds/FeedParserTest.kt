@@ -91,6 +91,17 @@ class FeedParserTest {
     }
 
     @Test
+    fun widestPicture() {
+        val body =
+            """<rss xmlns:media="http://search.yahoo.com/mrss/"><channel><title>t</title><item><title>a</title>
+            <link>https://a.org/1</link>
+            <media:content url="https://a.org/small.jpg" width="140" medium="image"/>
+            <media:content url="https://a.org/big.jpg" width="460" medium="image"/>
+            </item></channel></rss>"""
+        assertEquals("https://a.org/big.jpg", parser.parse(body.toByteArray(), "https://a.org").items.single().imageUrl)
+    }
+
+    @Test
     fun noImage() {
         val body =
             """<rss><channel><title>t</title><item><title>a</title><link>https://a.org/1</link>
