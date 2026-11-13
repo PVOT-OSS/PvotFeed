@@ -99,9 +99,23 @@ fun SettingsScreen(
                             singleLine = true,
                             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                             keyboardActions = KeyboardActions(onDone = {
-                                scope.launch { sources.muteWord(word) }
+                                val muted = word
+                                scope.launch { sources.muteWord(muted) }
                                 word = ""
                             }),
+                            trailingIcon = {
+                                PvotIconButton(
+                                    painterResource(R.drawable.ic_plus),
+                                    stringResource(R.string.settings_mute),
+                                    {
+                                        val muted = word
+                                        scope.launch { sources.muteWord(muted) }
+                                        word = ""
+                                    },
+                                    enabled = word.isNotBlank(),
+                                    colors = PvotIconButtonDefaults.plainColors(),
+                                )
+                            },
                             modifier = Modifier.fillMaxWidth(),
                         )
                     }
