@@ -1,0 +1,637 @@
+{
+ "version": 1,
+ "sources": [
+  {
+   "title": "The Hindu",
+   "feed": "https://www.thehindu.com/news/national/feeder/default.rss",
+   "site": "https://www.thehindu.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Indian Express",
+   "feed": "https://indianexpress.com/section/india/feed/",
+   "site": "https://indianexpress.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "Hindustan Times",
+   "feed": "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml",
+   "site": "https://www.hindustantimes.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Times of India",
+   "feed": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms",
+   "site": "https://timesofindia.indiatimes.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "NDTV",
+   "feed": "https://feeds.feedburner.com/ndtvnews-top-stories",
+   "site": "https://www.ndtv.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "India Today",
+   "feed": "https://www.indiatoday.in/rss/home",
+   "site": "https://www.indiatoday.in",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "News18",
+   "feed": "https://www.news18.com/commonfeeds/v1/eng/rss/india.xml",
+   "site": "https://www.news18.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "Scroll",
+   "feed": "https://feeds.feedburner.com/ScrollinArticles.rss",
+   "site": "https://scroll.in",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Quint",
+   "feed": "https://www.thequint.com/stories.rss",
+   "site": "https://www.thequint.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "Newslaundry",
+   "feed": "https://www.newslaundry.com/feed",
+   "site": "https://www.newslaundry.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The News Minute",
+   "feed": "https://www.thenewsminute.com/feed",
+   "site": "https://www.thenewsminute.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "ABP Live",
+   "feed": "https://news.abplive.com/home/feed",
+   "site": "https://news.abplive.com",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC News India",
+   "feed": "https://feeds.bbci.co.uk/news/world/asia/india/rss.xml",
+   "site": "https://www.bbc.com/news/world/asia/india",
+   "region": "INDIA",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Hindu Business",
+   "feed": "https://www.thehindu.com/business/feeder/default.rss",
+   "site": "https://www.thehindu.com/business",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "Indian Express Business",
+   "feed": "https://indianexpress.com/section/business/feed/",
+   "site": "https://indianexpress.com/section/business",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "HT Business",
+   "feed": "https://www.hindustantimes.com/feeds/rss/business/rssfeed.xml",
+   "site": "https://www.hindustantimes.com/business",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "Mint Markets",
+   "feed": "https://www.livemint.com/rss/markets",
+   "site": "https://www.livemint.com/market",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Economic Times",
+   "feed": "https://economictimes.indiatimes.com/rssfeedstopstories.cms",
+   "site": "https://economictimes.indiatimes.com",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "ET Markets",
+   "feed": "https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms",
+   "site": "https://economictimes.indiatimes.com/markets",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "NDTV Profit",
+   "feed": "https://feeds.feedburner.com/ndtvprofit-latest",
+   "site": "https://www.ndtvprofit.com",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "BusinessLine",
+   "feed": "https://www.thehindubusinessline.com/feeder/default.rss",
+   "site": "https://www.thehindubusinessline.com",
+   "region": "INDIA",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "Indian Express Tech",
+   "feed": "https://indianexpress.com/section/technology/feed/",
+   "site": "https://indianexpress.com/section/technology",
+   "region": "INDIA",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "Gadgets 360",
+   "feed": "https://feeds.feedburner.com/gadgets360-latest",
+   "site": "https://www.gadgets360.com",
+   "region": "INDIA",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "ET Tech",
+   "feed": "https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms",
+   "site": "https://economictimes.indiatimes.com/tech",
+   "region": "INDIA",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "Mint Technology",
+   "feed": "https://www.livemint.com/rss/technology",
+   "site": "https://www.livemint.com/technology",
+   "region": "INDIA",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Hindu Sci-Tech",
+   "feed": "https://www.thehindu.com/sci-tech/feeder/default.rss",
+   "site": "https://www.thehindu.com/sci-tech",
+   "region": "INDIA",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Hindu Health",
+   "feed": "https://www.thehindu.com/sci-tech/health/feeder/default.rss",
+   "site": "https://www.thehindu.com/sci-tech/health",
+   "region": "INDIA",
+   "topic": "HEALTH",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Hindu Sport",
+   "feed": "https://www.thehindu.com/sport/feeder/default.rss",
+   "site": "https://www.thehindu.com/sport",
+   "region": "INDIA",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "Indian Express Sports",
+   "feed": "https://indianexpress.com/section/sports/feed/",
+   "site": "https://indianexpress.com/section/sports",
+   "region": "INDIA",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "HT Sports",
+   "feed": "https://www.hindustantimes.com/feeds/rss/sports/rssfeed.xml",
+   "site": "https://www.hindustantimes.com/sports",
+   "region": "INDIA",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "TOI Sports",
+   "feed": "https://timesofindia.indiatimes.com/rssfeeds/4719148.cms",
+   "site": "https://timesofindia.indiatimes.com/sports",
+   "region": "INDIA",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "NDTV Sports",
+   "feed": "https://feeds.feedburner.com/ndtvsports-latest",
+   "site": "https://sports.ndtv.com",
+   "region": "INDIA",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "ESPNcricinfo",
+   "feed": "https://www.espncricinfo.com/rss/content/story/feeds/0.xml",
+   "site": "https://www.espncricinfo.com",
+   "region": "INDIA",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Hindu Entertainment",
+   "feed": "https://www.thehindu.com/entertainment/feeder/default.rss",
+   "site": "https://www.thehindu.com/entertainment",
+   "region": "INDIA",
+   "topic": "ENTERTAINMENT",
+   "kind": "WEB"
+  },
+  {
+   "title": "Indian Express Entertainment",
+   "feed": "https://indianexpress.com/section/entertainment/feed/",
+   "site": "https://indianexpress.com/section/entertainment",
+   "region": "INDIA",
+   "topic": "ENTERTAINMENT",
+   "kind": "WEB"
+  },
+  {
+   "title": "HT Entertainment",
+   "feed": "https://www.hindustantimes.com/feeds/rss/entertainment/rssfeed.xml",
+   "site": "https://www.hindustantimes.com/entertainment",
+   "region": "INDIA",
+   "topic": "ENTERTAINMENT",
+   "kind": "WEB"
+  },
+  {
+   "title": "Bollywood Hungama",
+   "feed": "https://www.bollywoodhungama.com/rss/news.xml",
+   "site": "https://www.bollywoodhungama.com",
+   "region": "INDIA",
+   "topic": "ENTERTAINMENT",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC News",
+   "feed": "https://feeds.bbci.co.uk/news/world/rss.xml",
+   "site": "https://www.bbc.com/news",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "Al Jazeera",
+   "feed": "https://www.aljazeera.com/xml/rss/all.xml",
+   "site": "https://www.aljazeera.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Guardian",
+   "feed": "https://www.theguardian.com/world/rss",
+   "site": "https://www.theguardian.com/world",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "NPR",
+   "feed": "https://feeds.npr.org/1004/rss.xml",
+   "site": "https://www.npr.org",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "DW",
+   "feed": "https://rss.dw.com/rdf/rss-en-all",
+   "site": "https://www.dw.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "France 24",
+   "feed": "https://www.france24.com/en/rss",
+   "site": "https://www.france24.com/en",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The New York Times",
+   "feed": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+   "site": "https://www.nytimes.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Wall Street Journal",
+   "feed": "https://feeds.content.dowjones.io/public/rss/RSSWorldNews",
+   "site": "https://www.wsj.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "Fox News",
+   "feed": "https://moxie.foxnews.com/google-publisher/world.xml",
+   "site": "https://www.foxnews.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "Sky News",
+   "feed": "https://feeds.skynews.com/feeds/rss/world.xml",
+   "site": "https://news.sky.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Economist",
+   "feed": "https://www.economist.com/the-world-this-week/rss.xml",
+   "site": "https://www.economist.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "National Review",
+   "feed": "https://www.nationalreview.com/feed/",
+   "site": "https://www.nationalreview.com",
+   "region": "WORLD",
+   "topic": "TOP",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC Business",
+   "feed": "https://feeds.bbci.co.uk/news/business/rss.xml",
+   "site": "https://www.bbc.com/news/business",
+   "region": "WORLD",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "Guardian Business",
+   "feed": "https://www.theguardian.com/uk/business/rss",
+   "site": "https://www.theguardian.com/business",
+   "region": "WORLD",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "CNBC",
+   "feed": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+   "site": "https://www.cnbc.com",
+   "region": "WORLD",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "NYT Business",
+   "feed": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
+   "site": "https://www.nytimes.com/section/business",
+   "region": "WORLD",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Economist Finance",
+   "feed": "https://www.economist.com/finance-and-economics/rss.xml",
+   "site": "https://www.economist.com/finance-and-economics",
+   "region": "WORLD",
+   "topic": "BUSINESS",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC Technology",
+   "feed": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+   "site": "https://www.bbc.com/news/technology",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "Guardian Technology",
+   "feed": "https://www.theguardian.com/uk/technology/rss",
+   "site": "https://www.theguardian.com/technology",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "NYT Technology",
+   "feed": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
+   "site": "https://www.nytimes.com/section/technology",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "The Verge",
+   "feed": "https://www.theverge.com/rss/index.xml",
+   "site": "https://www.theverge.com",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "Ars Technica",
+   "feed": "https://feeds.arstechnica.com/arstechnica/index",
+   "site": "https://arstechnica.com",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "TechCrunch",
+   "feed": "https://techcrunch.com/feed/",
+   "site": "https://techcrunch.com",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "Wired",
+   "feed": "https://www.wired.com/feed/rss",
+   "site": "https://www.wired.com",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "Hacker News",
+   "feed": "https://hnrss.org/frontpage",
+   "site": "https://news.ycombinator.com",
+   "region": "WORLD",
+   "topic": "TECHNOLOGY",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC Science",
+   "feed": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+   "site": "https://www.bbc.com/news/science_and_environment",
+   "region": "WORLD",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "Guardian Science",
+   "feed": "https://www.theguardian.com/science/rss",
+   "site": "https://www.theguardian.com/science",
+   "region": "WORLD",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "NPR Science",
+   "feed": "https://feeds.npr.org/1007/rss.xml",
+   "site": "https://www.npr.org/sections/science",
+   "region": "WORLD",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "NYT Science",
+   "feed": "https://rss.nytimes.com/services/xml/rss/nyt/Science.xml",
+   "site": "https://www.nytimes.com/section/science",
+   "region": "WORLD",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "ScienceDaily",
+   "feed": "https://www.sciencedaily.com/rss/top/science.xml",
+   "site": "https://www.sciencedaily.com",
+   "region": "WORLD",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "Nature",
+   "feed": "https://www.nature.com/nature.rss",
+   "site": "https://www.nature.com",
+   "region": "WORLD",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "New Scientist",
+   "feed": "https://www.newscientist.com/feed/home/",
+   "site": "https://www.newscientist.com",
+   "region": "WORLD",
+   "topic": "SCIENCE",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC Sport",
+   "feed": "https://feeds.bbci.co.uk/sport/rss.xml",
+   "site": "https://www.bbc.com/sport",
+   "region": "WORLD",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "Guardian Sport",
+   "feed": "https://www.theguardian.com/uk/sport/rss",
+   "site": "https://www.theguardian.com/sport",
+   "region": "WORLD",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "ESPN",
+   "feed": "https://www.espn.com/espn/rss/news",
+   "site": "https://www.espn.com",
+   "region": "WORLD",
+   "topic": "SPORTS",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC Entertainment",
+   "feed": "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml",
+   "site": "https://www.bbc.com/news/entertainment_and_arts",
+   "region": "WORLD",
+   "topic": "ENTERTAINMENT",
+   "kind": "WEB"
+  },
+  {
+   "title": "Guardian Culture",
+   "feed": "https://www.theguardian.com/culture/rss",
+   "site": "https://www.theguardian.com/culture",
+   "region": "WORLD",
+   "topic": "ENTERTAINMENT",
+   "kind": "WEB"
+  },
+  {
+   "title": "Variety",
+   "feed": "https://variety.com/feed/",
+   "site": "https://variety.com",
+   "region": "WORLD",
+   "topic": "ENTERTAINMENT",
+   "kind": "WEB"
+  },
+  {
+   "title": "BBC Health",
+   "feed": "https://feeds.bbci.co.uk/news/health/rss.xml",
+   "site": "https://www.bbc.com/news/health",
+   "region": "WORLD",
+   "topic": "HEALTH",
+   "kind": "WEB"
+  },
+  {
+   "title": "NPR Health",
+   "feed": "https://feeds.npr.org/1128/rss.xml",
+   "site": "https://www.npr.org/sections/health",
+   "region": "WORLD",
+   "topic": "HEALTH",
+   "kind": "WEB"
+  },
+  {
+   "title": "NYT Health",
+   "feed": "https://rss.nytimes.com/services/xml/rss/nyt/Health.xml",
+   "site": "https://www.nytimes.com/section/health",
+   "region": "WORLD",
+   "topic": "HEALTH",
+   "kind": "WEB"
+  },
+  {
+   "title": "STAT",
+   "feed": "https://www.statnews.com/feed/",
+   "site": "https://www.statnews.com",
+   "region": "WORLD",
+   "topic": "HEALTH",
+   "kind": "WEB"
+  }
+ ]
+}
