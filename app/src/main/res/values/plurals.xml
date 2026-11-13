@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Saalim Quadri <danascape@gmail.com>
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <plurals name="outlets">
+        <item quantity="one">%1$s and %2$d more</item>
+        <item quantity="other">%1$s and %2$d more</item>
+    </plurals>
+    <plurals name="setup_count">
+        <item quantity="one">%1$d source</item>
+        <item quantity="other">%1$d sources</item>
+    </plurals>
+    <plurals name="feed_loading">
+        <item quantity="one">Getting today\'s news from %1$d of %2$d source…</item>
+        <item quantity="other">Getting today\'s news from %1$d of %2$d sources…</item>
+    </plurals>
+    <plurals name="feed_new_stories">
+        <item quantity="one">%1$d new story</item>
+        <item quantity="other">%1$d new stories</item>
+    </plurals>
+    <plurals name="story_coverage">
+        <item quantity="one">How %1$d outlet reported it</item>
+        <item quantity="other">How %1$d outlets reported it</item>
+    </plurals>
+    <plurals name="sources_imported">
+        <item quantity="one">Imported %1$d source</item>
+        <item quantity="other">Imported %1$d sources</item>
+    </plurals>
+</resources>

@@ -89,6 +89,8 @@ class FeedRepository(
     suspend fun markRead(articleId: Long) =
         withContext(io) { db.articles().markRead(articleId, clock().toEpochMilli()) }
 
+    fun lastRefresh(): Instant? = preferences.lastRefresh
+
     /** True when sources are due: never fetched, or the last refresh is older than [minAge]. */
     fun isStale(minAge: Duration = MIN_AGE): Boolean {
         val last = preferences.lastRefresh ?: return true

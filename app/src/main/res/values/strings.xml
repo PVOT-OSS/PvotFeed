@@ -1,7 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
      SPDX-FileCopyrightText: 2026 Saalim Quadri <danascape@gmail.com>
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Pvot Feed</string>
+
+    <!-- Setup -->
+    <string name="setup_title">Your news, your way</string>
+    <string name="setup_lead">Pick what you want to read. No account, no tracking — the phone fetches the news straight from each outlet.</string>
+    <string name="setup_where">Where</string>
+    <string name="setup_what">What</string>
+    <string name="setup_start">Show my feed</string>
+    <string name="setup_pick_one">Pick at least one region and one topic</string>
+    <string name="region_india">India</string>
+    <string name="region_world">World</string>
+    <string name="topic_top">Top stories</string>
+    <string name="topic_business">Business</string>
+    <string name="topic_technology">Technology</string>
+    <string name="topic_science">Science</string>
+    <string name="topic_sports">Sports</string>
+    <string name="topic_entertainment">Entertainment</string>
+    <string name="topic_health">Health</string>
+
+    <!-- Feed -->
+    <string name="feed_caught_up">You\'re caught up</string>
+    <string name="feed_caught_up_detail">That\'s everything new since you last looked. Updated %1$s.</string>
+    <string name="feed_show_earlier">Show earlier stories</string>
+    <string name="feed_hide_earlier">Hide earlier stories</string>
+    <string name="feed_nothing_detail">Check your connection, then pull down to try again.</string>
+    <string name="feed_no_sources">You have no sources. Add a few to start your feed.</string>
+    <string name="feed_add_sources">Add sources</string>
+    <string name="feed_retry">Try again</string>
+    <string name="story_updated">Updated</string>
+    <string name="story_menu">More options for this story</string>
+    <string name="story_hide_source">Hide stories from %1$s</string>
+    <string name="story_mute_word">Mute a word…</string>
+    <string name="story_share">Share</string>
+    <string name="story_open_original">Open original</string>
+    <string name="source_hidden">Stories from %1$s are hidden</string>
+    <string name="undo">Undo</string>
+    <string name="sources">Sources</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="just_now">just now</string>
+    <string name="minutes_ago">%1$d min ago</string>
+    <string name="hours_ago">%1$d h ago</string>
+    <string name="days_ago">%1$d d ago</string>
+
+    <!-- Story -->
+    <string name="story_title">The story</string>
+
+    <!-- Reader -->
+    <string name="reader_failed">Couldn\'t load the full article (%1$s). Here is the summary.</string>
+    <string name="reader_text_size">Text size</string>
+    <string name="reader_by">By %1$s</string>
+    <string name="reader_minutes">%1$d min read</string>
+
+    <!-- Sources -->
+    <string name="sources_add_hint">Paste a link: site, YouTube, Reddit, Mastodon, Bluesky</string>
+    <string name="sources_add">Add</string>
+    <string name="sources_adding">Looking for the feed…</string>
+    <string name="sources_added">Added %1$s</string>
+    <string name="sources_already">%1$s is already in your sources</string>
+    <string name="sources_not_link">That doesn\'t look like a link</string>
+    <string name="sources_no_feed">Couldn\'t find a feed on that page</string>
+    <string name="sources_unreachable">Couldn\'t reach that page (%1$s)</string>
+    <string name="sources_yours">Added by you</string>
+    <string name="sources_starter">Starter sources</string>
+    <string name="sources_choose_topics">Choose regions and topics</string>
+    <string name="sources_import">Import OPML</string>
+    <string name="sources_export">Export OPML</string>
+    <string name="sources_exported">Sources exported</string>
+    <string name="sources_remove">Remove %1$s</string>
+    <string name="sources_hidden">Hidden</string>
+    <string name="sources_failing">Not loading: %1$s</string>
+    <string name="sources_updated">Updated %1$s</string>
+    <string name="sources_waiting">Not loaded yet</string>
+    <string name="kind_youtube">YouTube</string>
+    <string name="kind_reddit">Reddit</string>
+    <string name="kind_mastodon">Mastodon</string>
+    <string name="kind_bluesky">Bluesky</string>
+
+    <!-- Settings -->
+    <string name="settings_reading">Reading</string>
+    <string name="settings_text_size">Article text size</string>
+    <string name="settings_refresh">Refresh in the background</string>
+    <string name="settings_refresh_summary">About every 3 hours, when connected</string>
+    <string name="settings_muted_words">Muted words</string>
+    <string name="settings_muted_empty">Stories with these words in the headline or summary are hidden.</string>
+    <string name="settings_mute_hint">Add a word to mute</string>
+    <string name="settings_unmute">Unmute %1$s</string>
+    <string name="settings_mute">Mute</string>
+    <string name="settings_sources">Manage sources</string>
+    <string name="settings_text_small">Small</string>
+    <string name="settings_text_default">Default</string>
+    <string name="settings_text_large">Large</string>
+
+    <!-- About -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_privacy_title">Privacy</string>
+    <string name="about_privacy">Pvot Feed has no account, no analytics and no server of its own. Your phone fetches feeds, articles and pictures directly from each outlet, so those outlets see a request from your phone, like when you visit their site. Everything you read and hide stays on the phone.</string>
+    <string name="about_source">Source code</string>
+    <string name="about_source_summary">github.com/PVOT-OSS/PvotFeed</string>
+    <string name="about_licence">Licence</string>
+    <string name="about_licence_summary">Apache License 2.0</string>
+    <string name="about_icons">Icons</string>
+    <string name="about_icons_summary">Tabler Icons, MIT License</string>
+    <string name="about_content">News content belongs to the outlets that publish it; Pvot Feed links to the original.</string>
 </resources>
