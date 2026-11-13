@@ -22,6 +22,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -49,12 +53,7 @@ import org.prauga.feed.ui.timeAgo
 fun LeadStoryCard(story: Story, onOpen: () -> Unit, onMenu: () -> Unit, modifier: Modifier = Modifier) {
     PvotCard(modifier = modifier.fillMaxWidth(), onClick = onOpen) {
         story.imageUrl?.let { url ->
-            AsyncImage(
-                model = url,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f).background(MaterialTheme.colorScheme.surfaceVariant),
-            )
+            Picture(url, Modifier.fillMaxWidth().aspectRatio(16f / 9f))
         }
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Outlets(story, onMenu)
@@ -95,15 +94,7 @@ fun StoryCard(story: Story, onOpen: () -> Unit, onMenu: () -> Unit, modifier: Mo
                     modifier = Modifier.weight(1f),
                 )
                 story.imageUrl?.let { url ->
-                    AsyncImage(
-                        model = url,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier =
-                            Modifier.size(width = 104.dp, height = 78.dp)
-                                .clip(RoundedCornerShape(10.dp))
-                                .background(MaterialTheme.colorScheme.surfaceVariant),
-                    )
+                    Picture(url, Modifier.size(width = 104.dp, height = 78.dp).clip(RoundedCornerShape(10.dp)))
                 }
             }
             AlsoReported(story)
@@ -124,14 +115,22 @@ private fun Outlets(story: Story, onMenu: () -> Unit) {
         }
         Spacer(Modifier.width(8.dp))
         Text(
-            if (outlets.size == 1) outlets.first().title
-            else pluralStringResource(R.plurals.outlets, outlets.size - 1, outlets.first().title, outlets.size - 1),
+            story.lead.source.title,
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f, fill = false),
         )
+        if (outlets.size > 1) {
+            Text(
+                pluralStringResource(R.plurals.more_outlets, outlets.size - 1, outlets.size - 1),
+                style = MaterialTheme.typography.labelMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.primary,
+                maxLines = 1,
+            )
+        }
         Text(
             " · " + timeAgo(story.lastUpdated),
             style = MaterialTheme.typography.labelMedium,
@@ -161,12 +160,26 @@ private fun Outlets(story: Story, onMenu: () -> Unit) {
     }
 }
 
+/** A news picture that disappears instead of leaving an empty box when it can't be loaded. */
+@Composable
+fun Picture(url: String, modifier: Modifier) {
+    var failed by remember(url) { mutableStateOf(false) }
+    if (failed) return
+    AsyncImage(
+        model = url,
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        onError = { failed = true },
+        modifier = modifier.background(MaterialTheme.colorScheme.surfaceVariant),
+    )
+}
+
 /** How other outlets headlined the same story: two of them, one line each. */
 @Composable
 private fun AlsoReported(story: Story) {
     val others =
         story.articles
-            .filter { it.source.id != story.lead.source.id }
+            .filter { it.source.id != story.lead.source.id && it.article.title.count { c -> c == ' ' } >= 3 }
             .distinctBy { it.source.id }
             .sortedByDescending { it.article.publishedAt }
             .take(2)

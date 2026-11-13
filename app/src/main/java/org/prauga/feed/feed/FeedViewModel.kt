@@ -29,6 +29,8 @@ data class FeedUiState(
     val loaded: Boolean = false,
     val hasSources: Boolean = true,
     val showEarlier: Boolean = false,
+    /** A refresh the reader asked for by pulling down, as opposed to an automatic one. */
+    val pulling: Boolean = false,
 )
 
 /**
@@ -67,8 +69,9 @@ class FeedViewModel(private val feed: FeedRepository, private val sources: Sourc
 
     fun refresh(force: Boolean = true) {
         viewModelScope.launch {
-            _state.update { it.copy(hasSources = sources.hasSources()) }
+            _state.update { it.copy(hasSources = sources.hasSources(), pulling = force) }
             feed.refresh(force)
+            _state.update { it.copy(pulling = false) }
         }
     }
 

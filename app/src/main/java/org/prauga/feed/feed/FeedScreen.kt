@@ -129,7 +129,7 @@ fun FeedScreen(
         snackbarHost = { PvotSnackbarHost(snackbar) },
     ) { padding ->
         PullToRefreshBox(
-            isRefreshing = state.refresh.running && state.stories.isNotEmpty(),
+            isRefreshing = state.pulling,
             onRefresh = { viewModel.refresh() },
             modifier = Modifier.fillMaxSize(),
         ) {

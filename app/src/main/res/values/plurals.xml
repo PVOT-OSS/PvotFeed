@@ -4,9 +4,9 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-    <plurals name="outlets">
-        <item quantity="one">%1$s and %2$d more</item>
-        <item quantity="other">%1$s and %2$d more</item>
+    <plurals name="more_outlets">
+        <item quantity="one">\u0020+%1$d</item>
+        <item quantity="other">\u0020+%1$d</item>
     </plurals>
     <plurals name="setup_count">
         <item quantity="one">%1$d source</item>

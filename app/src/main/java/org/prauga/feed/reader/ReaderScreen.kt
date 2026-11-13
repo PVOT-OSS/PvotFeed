@@ -49,6 +49,7 @@ import java.time.format.FormatStyle
 import org.prauga.feed.R
 import org.prauga.feed.core.data.ReaderContent
 import org.prauga.feed.core.reader.Block
+import org.prauga.feed.feed.Picture
 import org.prauga.feed.ui.SourceIcon
 import org.prauga.feed.ui.openLink
 import org.prauga.feed.ui.shareLink
@@ -106,12 +107,7 @@ fun ReaderScreen(viewModel: ReaderViewModel, onBack: () -> Unit) {
             val hero = full?.imageUrl ?: article.imageUrl
             if (hero != null) {
                 item(key = "hero") {
-                    AsyncImage(
-                        model = hero,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f).clip(RoundedCornerShape(14.dp)).background(MaterialTheme.colorScheme.surfaceVariant),
-                    )
+                    Picture(hero, Modifier.fillMaxWidth().aspectRatio(16f / 9f).clip(RoundedCornerShape(14.dp)))
                 }
             }
             when (content) {

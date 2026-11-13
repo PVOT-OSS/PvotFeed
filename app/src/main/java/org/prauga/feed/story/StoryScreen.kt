@@ -3,7 +3,6 @@
 
 package org.prauga.feed.story
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,25 +14,24 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
 import com.prauga.pvot.designsystem.components.PvotCard
 import com.prauga.pvot.designsystem.motion.pvotReveal
 import org.prauga.feed.R
 import org.prauga.feed.core.data.FeedRepository
 import org.prauga.feed.core.model.SourcedArticle
+import org.prauga.feed.feed.Picture
 import org.prauga.feed.ui.SourceIcon
 import org.prauga.feed.ui.SubScreen
 import org.prauga.feed.ui.timeAgo
@@ -48,18 +46,7 @@ fun StoryScreen(storyId: Long, feed: FeedRepository, onOpenArticle: (Long) -> Un
         val s = story ?: return@SubScreen
         item(key = "head") {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                s.imageUrl?.let {
-                    AsyncImage(
-                        model = it,
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier =
-                            Modifier.fillMaxWidth()
-                                .aspectRatio(16f / 9f)
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(MaterialTheme.colorScheme.surfaceVariant),
-                    )
-                }
+                s.imageUrl?.let { Picture(it, Modifier.fillMaxWidth().aspectRatio(16f / 9f).clip(RoundedCornerShape(16.dp))) }
                 Text(
                     s.lead.article.title,
                     style = MaterialTheme.typography.headlineSmall,
@@ -105,14 +92,7 @@ private fun ArticleRow(item: SourcedArticle, modifier: Modifier, onClick: () -> 
                     color = MaterialTheme.colorScheme.onSurface,
                 )
             }
-            item.article.imageUrl?.let {
-                AsyncImage(
-                    model = it,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(72.dp).clip(RoundedCornerShape(10.dp)).background(MaterialTheme.colorScheme.surfaceVariant),
-                )
-            }
+            item.article.imageUrl?.let { Picture(it, Modifier.size(72.dp).clip(RoundedCornerShape(10.dp))) }
         }
     }
 }
