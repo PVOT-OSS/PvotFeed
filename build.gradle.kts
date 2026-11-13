@@ -10,9 +10,12 @@ plugins {
     alias(libs.plugins.room) apply false
 }
 
+// Semantic versioning: bump MAJOR for incompatible changes (data or behaviour people rely on),
+// MINOR for new features, PATCH for fixes. versionCode = MAJOR * 10000 + MINOR * 100 + PATCH, so
+// 1.2.3 is 10203; tag releases as v<versionName> (F-Droid builds from the tag).
 extra.apply {
-    val versionMajor = 0
-    val versionMinor = 1
+    val versionMajor = 1
+    val versionMinor = 0
     val versionPatch = 0
     set("versionCode", versionMajor * 10000 + versionMinor * 100 + versionPatch)
     set("versionName", "$versionMajor.$versionMinor.$versionPatch")
