@@ -102,11 +102,12 @@ class SourceRepository(
             val found = resolve(url) ?: return@withContext lastFailure ?: AddResult.NoFeed
             val (feedUrl, kind, feed, pageIcon) = found
             db.sources().byFeedUrl(feedUrl)?.let { return@withContext AddResult.AlreadyAdded(it.toModel()) }
+            val isList = feed.mailingList != null || kind == SourceKind.LIST
             val entity =
                 SourceEntity(
                     feedUrl = feedUrl,
-                    title = feed.title.ifBlank { FeedLinks.host(url) }.take(120),
-                    kind = kind.name,
+                    title = (if (isList) listName(feed) else feed.title).ifBlank { FeedLinks.host(url) }.take(120),
+                    kind = (if (isList) SourceKind.LIST else kind).name,
                     siteUrl = feed.siteUrl ?: url,
                     iconUrl = pageIcon ?: feed.iconUrl,
                     addedAt = clock().toEpochMilli(),

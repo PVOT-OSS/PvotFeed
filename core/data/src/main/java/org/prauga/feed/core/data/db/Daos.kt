@@ -39,17 +39,23 @@ interface SourceDao {
 interface ArticleDao {
     @Query(
         "SELECT id, source_id, url, title, summary, image_url, author, published_at, story_key, " +
-            "seen_at, read_at FROM articles WHERE published_at >= :since"
+            "seen_at, read_at, guid, reply_to FROM articles WHERE published_at >= :since"
     )
     fun observeSince(since: Long): Flow<List<ArticleRow>>
 
     @Query(
         "SELECT id, source_id, url, title, summary, image_url, author, published_at, story_key, " +
-            "seen_at, read_at FROM articles WHERE published_at >= :since"
+            "seen_at, read_at, guid, reply_to FROM articles WHERE published_at >= :since"
     )
     suspend fun since(since: Long): List<ArticleRow>
 
     @Query("SELECT * FROM articles WHERE id = :id") suspend fun byId(id: Long): ArticleEntity?
+
+    @Query("SELECT * FROM articles WHERE id IN (:ids)")
+    suspend fun byIds(ids: List<Long>): List<ArticleEntity>
+
+    @Query("UPDATE articles SET read_at = :at, seen_at = :at WHERE id IN (:ids) AND read_at IS NULL")
+    suspend fun markAllRead(ids: List<Long>, at: Long)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(articles: List<ArticleEntity>): List<Long>

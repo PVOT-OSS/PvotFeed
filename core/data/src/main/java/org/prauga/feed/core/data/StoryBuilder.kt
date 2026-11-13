@@ -7,6 +7,7 @@ import java.time.Duration
 import java.time.Instant
 import org.prauga.feed.core.data.db.ArticleRow
 import org.prauga.feed.core.model.Source
+import org.prauga.feed.core.model.SourceKind
 import org.prauga.feed.core.model.SourcedArticle
 import org.prauga.feed.core.model.Story
 import org.prauga.feed.core.stories.GroupInput
@@ -38,6 +39,7 @@ internal class StoryBuilder(private val grouper: StoryGrouper = StoryGrouper()) 
                 val source = sources[row.sourceId]
                 source != null &&
                     !source.muted &&
+                    source.kind != SourceKind.LIST &&
                     muted.none { it.containsMatchIn(row.title) || it.containsMatchIn(row.summary) }
             }
         val stories =

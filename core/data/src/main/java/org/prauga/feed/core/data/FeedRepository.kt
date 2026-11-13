@@ -31,6 +31,7 @@ import org.prauga.feed.core.feeds.FeedFormatException
 import org.prauga.feed.core.feeds.FeedLinks
 import org.prauga.feed.core.feeds.FeedParser
 import org.prauga.feed.core.feeds.ParsedFeed
+import org.prauga.feed.core.model.SourceKind
 import org.prauga.feed.core.model.Topic
 import org.prauga.feed.core.network.FetchResult
 import org.prauga.feed.core.network.Fetcher
@@ -181,6 +182,8 @@ class FeedRepository(
                         lastError = null,
                         iconUrl = source.iconUrl ?: feed.iconUrl,
                         siteUrl = source.siteUrl ?: feed.siteUrl,
+                        kind = if (feed.mailingList != null) SourceKind.LIST.name else source.kind,
+                        title = if (feed.mailingList != null && source.kind != SourceKind.LIST.name) listName(feed) else source.title,
                     )
                 )
                 true
@@ -188,9 +191,9 @@ class FeedRepository(
         }
     }
 
-    internal suspend fun store(source: SourceEntity, feed: ParsedFeed) {
+    internal suspend fun store(source: SourceEntity, feed: ParsedFeed, keepOld: Boolean = false) {
         val now = clock()
-        val oldest = now.minus(KEEP)
+        val oldest = if (keepOld) Instant.EPOCH else now.minus(KEEP)
         val articles =
             feed.items.mapNotNull { item ->
                 if (item.url.isBlank() || item.title.isBlank()) return@mapNotNull null
@@ -207,6 +210,7 @@ class FeedRepository(
                     author = item.author?.take(120),
                     publishedAt = published.toEpochMilli(),
                     fetchedAt = now.toEpochMilli(),
+                    replyTo = item.inReplyTo,
                 )
             }
         if (articles.isNotEmpty()) db.articles().insertAll(articles)
@@ -217,7 +221,8 @@ class FeedRepository(
         groupLock.withLock {
             withContext(Dispatchers.Default) {
                 val since = clock().minus(GROUP_WINDOW).toEpochMilli()
-                val rows = db.articles().since(since)
+                val lists = db.sources().all().filter { it.kind == SourceKind.LIST.name }.map { it.id }.toSet()
+                val rows = db.articles().since(since).filter { it.sourceId !in lists }
                 val keys =
                     grouper.group(
                         rows.map {
@@ -266,7 +271,7 @@ class FeedRepository(
         val gate = Semaphore(4)
         db.sources()
             .all()
-            .filter { !it.iconChecked && it.lastSuccessAt != null }
+            .filter { !it.iconChecked && it.lastSuccessAt != null && it.kind != SourceKind.LIST.name }
             .take(MAX_ICONS)
             .map { source ->
                 async {

@@ -65,6 +65,8 @@ data class ArticleEntity(
     @ColumnInfo(name = "seen_at") val seenAt: Long? = null,
     @ColumnInfo(name = "read_at") val readAt: Long? = null,
     @ColumnInfo(name = "image_checked") val imageChecked: Boolean = false,
+    /** Mailing list messages: the guid of the message this one answers. */
+    @ColumnInfo(name = "reply_to") val replyTo: String? = null,
 )
 
 /** Articles as the feed needs them: without the stored HTML body. */
@@ -80,6 +82,8 @@ data class ArticleRow(
     @ColumnInfo(name = "story_key") val storyKey: Long?,
     @ColumnInfo(name = "seen_at") val seenAt: Long?,
     @ColumnInfo(name = "read_at") val readAt: Long?,
+    val guid: String = "",
+    @ColumnInfo(name = "reply_to") val replyTo: String? = null,
 )
 
 @Entity(
