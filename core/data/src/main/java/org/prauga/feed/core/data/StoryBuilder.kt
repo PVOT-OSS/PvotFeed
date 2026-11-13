@@ -13,7 +13,10 @@ import org.prauga.feed.core.stories.GroupInput
 import org.prauga.feed.core.stories.StoryGrouper
 import org.prauga.feed.core.stories.StoryRanking
 
-/** What the feed screen shows: new stories, best first, then the ones already seen. */
+/**
+ * What the feed screen shows: the best new stories, few enough to finish, then everything else
+ * (lower-ranked new stories first, then the ones already seen).
+ */
 data class FeedSnapshot(val fresh: List<Story>, val earlier: List<Story>) {
     companion object {
         val Empty = FeedSnapshot(emptyList(), emptyList())
@@ -42,13 +45,11 @@ internal class StoryBuilder(private val grouper: StoryGrouper = StoryGrouper()) 
                 .groupBy { it.storyKey ?: it.id }
                 .map { (key, group) -> story(key, group, sources) }
         val freshSince = now.minus(FRESH_WINDOW)
-        val (fresh, earlier) = stories.partition { !it.seen && it.lastUpdated.isAfter(freshSince) }
+        val (candidates, seen) = stories.partition { !it.seen && it.lastUpdated.isAfter(freshSince) }
+        val ranked = candidates.sortedByDescending { StoryRanking.score(it.outlets.size, it.lastUpdated, now) }
         return FeedSnapshot(
-            fresh =
-                fresh.sortedByDescending {
-                    StoryRanking.score(it.outlets.size, it.lastUpdated, now)
-                },
-            earlier = earlier.sortedByDescending { it.lastUpdated },
+            fresh = ranked.take(FRESH_LIMIT),
+            earlier = ranked.drop(FRESH_LIMIT) + seen.sortedByDescending { it.lastUpdated },
         )
     }
 
@@ -77,6 +78,7 @@ internal class StoryBuilder(private val grouper: StoryGrouper = StoryGrouper()) 
     }
 
     private companion object {
-        val FRESH_WINDOW: Duration = Duration.ofHours(36)
+        val FRESH_WINDOW: Duration = Duration.ofHours(24)
+        const val FRESH_LIMIT = 50
     }
 }

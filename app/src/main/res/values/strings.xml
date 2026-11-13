@@ -26,8 +26,8 @@
     <!-- Feed -->
     <string name="feed_caught_up">You\'re caught up</string>
     <string name="feed_caught_up_detail">That\'s everything new since you last looked. Updated %1$s.</string>
-    <string name="feed_show_earlier">Show earlier stories</string>
-    <string name="feed_hide_earlier">Hide earlier stories</string>
+    <string name="feed_show_earlier">Show more stories</string>
+    <string name="feed_hide_earlier">Hide more stories</string>
     <string name="feed_nothing_detail">Check your connection, then pull down to try again.</string>
     <string name="feed_no_sources">You have no sources. Add a few to start your feed.</string>
     <string name="feed_add_sources">Add sources</string>
