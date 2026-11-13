@@ -322,6 +322,12 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
         fun JsonObject.string(key: String): String? =
             (this[key] as? JsonPrimitive)?.contentOrNull?.takeIf { it.isNotBlank() }
 
+        /** Some feeds put the URL slug in the title: "zakir-naik-irf-ban" becomes "Zakir naik irf ban". */
+        fun readable(title: String): String {
+            if (' ' in title || !(title.contains('-') || title.contains('_'))) return title
+            return title.replace(Regex("[-_]+"), " ").trim().replaceFirstChar { it.uppercase() }
+        }
+
         fun looksLikeImage(url: String?): Boolean {
             val path = url?.substringBefore('?')?.lowercase() ?: return false
             return listOf(".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif").any {
@@ -362,7 +368,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
             return ParsedItem(
                 id = id.trim(),
                 url = LinkCleaner.clean(url),
-                title = Html.text(title),
+                title = readable(Html.text(title)),
                 summary = summary,
                 contentHtml = contentHtml?.takeIf { it.isNotBlank() },
                 imageUrl =

@@ -117,7 +117,8 @@ class StoryGrouper(
                 val centrality = docs.filter { it !== doc }.sumOf { cosine(it.vector, doc.vector) }
                 val picture = if (hasImage(doc.input.id)) 0.25 else 0.0
                 val teaser = if (TEASER.containsMatchIn(doc.input.title)) 0.5 else 0.0
-                val short = if (doc.input.title.length < 30) 0.2 else 0.0
+                val words = doc.input.title.split(' ').count { it.isNotBlank() }
+                val short = if (words < 5) 0.4 else if (doc.input.title.length < 45) 0.15 else 0.0
                 centrality / (docs.size - 1) + picture - teaser - short
             }
             .input
@@ -153,7 +154,8 @@ class StoryGrouper(
         val TEASER =
             Regex(
                 "(?i)(\\?$|^(watch|video|in pics|photos|live|explained)\\b|you won't|here's why|" +
-                    "here is why|what we know|\\| live|live updates|^\\d+ (things|reasons|ways))"
+                    "here is why|what we know|live updates?|\\|\\s*(watch|video|photos|pics|live|exclusive)\\b|" +
+                    "^\\d+ (things|reasons|ways))"
             )
     }
 }

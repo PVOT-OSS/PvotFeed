@@ -94,6 +94,15 @@ class StoryGrouperTest {
     }
 
     @Test
+    fun leadAvoidsWatchTeasersAndTagTitles() {
+        val watch = a(1, "PM Modi Inaugurates Namma Metro's Pink Line, Rides Train | Watch")
+        val tag = a(2, "Bengaluru metro pink line")
+        val plain = a(3, "PM Modi flags off Bengaluru Metro's Pink Line, takes a ride with the chief minister")
+        val lead = StoryGrouper().lead(listOf(watch, tag, plain)) { true }
+        assertEquals(plain.id, lead)
+    }
+
+    @Test
     fun rankingPrefersReachAndFreshness() {
         val wide = StoryRanking.score(8, now.minusSeconds(3600 * 3), now)
         val single = StoryRanking.score(1, now.minusSeconds(3600 * 3), now)

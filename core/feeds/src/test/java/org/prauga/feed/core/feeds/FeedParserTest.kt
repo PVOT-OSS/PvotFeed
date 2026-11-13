@@ -66,6 +66,14 @@ class FeedParserTest {
         assertEquals("https://json.example.org/one.png", item.imageUrl)
     }
 
+    @Test
+    fun slugTitlesBecomeWords() {
+        val body =
+            """<rss><channel><title>t</title><item><title>zakir-naik-irf-ban-extended</title>
+            <link>https://a.org/1</link></item></channel></rss>"""
+        assertEquals("Zakir naik irf ban extended", parser.parse(body.toByteArray(), "https://a.org").items.single().title)
+    }
+
     @Test(expected = FeedFormatException::class)
     fun htmlIsNotAFeed() {
         parser.parse("<html><body>hi</body></html>".toByteArray(), "https://x.org")
