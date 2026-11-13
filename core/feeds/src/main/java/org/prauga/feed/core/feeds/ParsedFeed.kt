@@ -10,6 +10,8 @@ data class ParsedFeed(
     val siteUrl: String?,
     val iconUrl: String?,
     val items: List<ParsedItem>,
+    /** The list's address when the feed is a mailing list archive (public-inbox, lore.kernel.org). */
+    val mailingList: String? = null,
 )
 
 data class ParsedItem(
@@ -23,6 +25,8 @@ data class ParsedItem(
     val imageUrl: String?,
     val author: String?,
     val publishedAt: Instant?,
+    /** For mailing list messages: the id of the message this one replies to. */
+    val inReplyTo: String? = null,
 )
 
 class FeedFormatException(message: String, cause: Throwable? = null) : Exception(message, cause)

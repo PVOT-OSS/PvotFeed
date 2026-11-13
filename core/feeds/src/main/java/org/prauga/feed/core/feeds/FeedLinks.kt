@@ -33,6 +33,7 @@ object FeedLinks {
             host.endsWith("youtube.com") || host == "youtu.be" -> SourceKind.YOUTUBE
             host.endsWith("reddit.com") -> SourceKind.REDDIT
             host == "bsky.app" -> SourceKind.BLUESKY
+            host.startsWith("lore.") || host.startsWith("public-inbox.") -> SourceKind.LIST
             Regex("^/@[A-Za-z0-9_.]+").containsMatchIn(path) -> SourceKind.MASTODON
             else -> SourceKind.WEB
         }
@@ -83,6 +84,13 @@ object FeedLinks {
                 if (path.endsWith(".rss")) listOf(Candidate(url, SourceKind.MASTODON))
                 else
                     listOf(Candidate("https://$host/${segments.first()}.rss", SourceKind.MASTODON))
+            SourceKind.LIST ->
+                when {
+                    path.endsWith(".atom") -> listOf(Candidate(url, SourceKind.LIST))
+                    segments.isNotEmpty() ->
+                        listOf(Candidate("https://$host/${segments.first()}/new.atom", SourceKind.LIST))
+                    else -> emptyList()
+                }
             SourceKind.WEB -> emptyList()
         }
     }

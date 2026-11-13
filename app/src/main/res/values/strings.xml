@@ -82,6 +82,18 @@
     <string name="kind_mastodon">Mastodon</string>
     <string name="kind_bluesky">Bluesky</string>
 
+    <!-- Mailing lists -->
+    <string name="lists_title">Mailing lists</string>
+    <string name="lists_all">All</string>
+    <string name="lists_card_quiet">No new threads</string>
+    <string name="lists_empty">No mailing lists yet. Paste a list\'s archive link in Sources — for example https://lore.kernel.org/linux-arm-msm/</string>
+    <string name="lists_add">Add a list</string>
+    <string name="lists_open_archive">Open in the archive</string>
+    <string name="lists_loading_thread">Getting the whole thread…</string>
+    <string name="lists_show_quote">Show quoted text</string>
+    <string name="lists_show_more">Show the rest</string>
+    <string name="kind_list">Mailing list</string>
+
     <!-- Settings -->
     <string name="settings_reading">Reading</string>
     <string name="settings_text_size">Article text size</string>

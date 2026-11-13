@@ -12,6 +12,9 @@ enum class SourceKind {
     REDDIT,
     MASTODON,
     BLUESKY,
+
+    /** A mailing list archive: its messages form threads, kept apart from the news. */
+    LIST,
 }
 
 enum class Region {

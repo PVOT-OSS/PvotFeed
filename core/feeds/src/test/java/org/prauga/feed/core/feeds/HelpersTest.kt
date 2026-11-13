@@ -95,4 +95,27 @@ class HelpersTest {
             )
         assertEquals(list, opml.read(opml.write("Pvot Feed", list).toByteArray()))
     }
+
+    @Test
+    fun mailSubjects() {
+        val s = Mail.subject("Re: [PATCH v2 1/3] arm64: dts: qcom: Add SAW3")
+        assertEquals("arm64: dts: qcom: Add SAW3", s.title)
+        assertEquals(listOf("PATCH", "v2", "1/3"), s.tags)
+        assertEquals(true, s.reply)
+        assertEquals(2, s.version)
+        assertEquals(1 to 3, s.part)
+        val plain = Mail.subject("[RFC] mm: something")
+        assertEquals(false, plain.reply)
+        assertEquals(null, plain.version)
+        assertEquals("Question about boot", Mail.subject("Question about boot").title)
+    }
+
+    @Test
+    fun mailBody() {
+        assertEquals("Hi,\n> quoted\nThanks", Mail.body("<div><pre>Hi,\n<span>&gt; quoted\n</span>Thanks\n</pre></div>"))
+        assertEquals(
+            listOf(FeedLinks.Candidate("https://lore.kernel.org/linux-arm-msm/new.atom", SourceKind.LIST)),
+            FeedLinks.direct("https://lore.kernel.org/linux-arm-msm/"),
+        )
+    }
 }

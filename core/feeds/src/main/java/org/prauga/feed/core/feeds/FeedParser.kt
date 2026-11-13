@@ -162,6 +162,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
             var title = ""
             var site: String? = null
             var icon: String? = null
+            var feedId: String? = null
             val items = mutableListOf<ParsedItem>()
             val rootDepth = p.depth
             while (p.next() != XmlPullParser.END_DOCUMENT) {
@@ -173,6 +174,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
                     "link" -> if (isAlternate()) site = p.getAttributeValue(null, "href")
                     "icon",
                     "logo" -> if (icon == null) icon = p.textContent().trim()
+                    "id" -> feedId = p.textContent().trim()
                 }
             }
             return ParsedFeed(
@@ -180,6 +182,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
                 resolve(site, url),
                 resolve(icon, url),
                 items,
+                mailingList = feedId?.takeIf { it.startsWith("mailto:") }?.removePrefix("mailto:"),
             )
         }
 
@@ -200,6 +203,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
             var author: String? = null
             var published: String? = null
             var updated: String? = null
+            var replyTo: String? = null
             while (!(p.next() == XmlPullParser.END_TAG && p.depth == depth)) {
                 if (p.eventType == XmlPullParser.END_DOCUMENT) break
                 if (p.eventType != XmlPullParser.START_TAG) continue
@@ -226,10 +230,12 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
                     "name" -> if (author == null) author = p.textContent().trim()
                     "published" -> published = p.textContent()
                     "updated" -> updated = p.textContent()
+                    "in-reply-to" -> if (p.namespace == THREAD) replyTo = p.getAttributeValue(null, "ref")
                 }
             }
             val resolved = resolve(link, url)
             return item(
+                inReplyTo = replyTo,
                 id = id ?: resolved ?: title,
                 url = resolved.orEmpty(),
                 title = title,
@@ -279,6 +285,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
     private companion object {
         const val ATOM = "http://www.w3.org/2005/Atom"
         const val MEDIA = "http://search.yahoo.com/mrss/"
+        const val THREAD = "http://purl.org/syndication/thread/1.0"
         const val RELAXED = "http://xmlpull.org/v1/doc/features.html#relaxed"
         const val BOM_BYTE: Byte = 0xEF.toByte()
         const val LONG_DESCRIPTION = 1200
@@ -352,6 +359,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
         }
 
         fun item(
+            inReplyTo: String? = null,
             id: String,
             url: String,
             title: String,
@@ -377,6 +385,7 @@ class FeedParser(private val newParser: () -> XmlPullParser) {
                     },
                 author = author?.takeIf { it.isNotBlank() },
                 publishedAt = FeedDates.parse(date),
+                inReplyTo = inReplyTo,
             )
         }
     }

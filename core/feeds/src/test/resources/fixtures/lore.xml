@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- SPDX-FileCopyrightText: 2026 Saalim Quadri <danascape@gmail.com> -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0">
+<title>example-list.vger.kernel.org archive mirror</title>
+<link rel="alternate" type="text/html" href="https://lore.kernel.org/example-list/"/>
+<id>mailto:example-list@vger.kernel.org</id>
+<entry><author><name>A Reviewer</name><email>a@example.org</email></author>
+<title>Re: [PATCH 1/2] dt-bindings: add a thing</title><updated>2026-11-13T11:42:20Z</updated>
+<link href="https://lore.kernel.org/example-list/reply-1@example/"/><id>urn:uuid:reply</id>
+<thr:in-reply-to ref="urn:uuid:patch1" href="https://lore.kernel.org/example-list/patch-1@example/"/>
+<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><pre>&gt; Add a thing
+Reviewed-by: A Reviewer
+</pre></div></content></entry>
+</feed>

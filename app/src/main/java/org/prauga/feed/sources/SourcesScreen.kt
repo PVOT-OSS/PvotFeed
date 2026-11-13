@@ -155,6 +155,7 @@ private fun SourceRow(source: Source, viewModel: SourcesViewModel, removable: Bo
             SourceKind.REDDIT -> stringResource(R.string.kind_reddit)
             SourceKind.MASTODON -> stringResource(R.string.kind_mastodon)
             SourceKind.BLUESKY -> stringResource(R.string.kind_bluesky)
+            SourceKind.LIST -> stringResource(R.string.kind_list)
             SourceKind.WEB -> null
         }
     val where = listOfNotNull(source.region?.let { stringResource(it.label) }, source.topic?.let { stringResource(it.label) }, kind)

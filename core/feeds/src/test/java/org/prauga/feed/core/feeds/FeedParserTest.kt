@@ -48,6 +48,17 @@ class FeedParserTest {
     }
 
     @Test
+    fun mailingList() {
+        val feed = parser.parse(fixture("lore.xml"), "https://lore.kernel.org/example-list/new.atom")
+        assertEquals("example-list@vger.kernel.org", feed.mailingList)
+        val message = feed.items.single()
+        assertEquals("urn:uuid:reply", message.id)
+        assertEquals("urn:uuid:patch1", message.inReplyTo)
+        assertEquals("A Reviewer", message.author)
+        assertEquals("> Add a thing\nReviewed-by: A Reviewer", Mail.body(message.contentHtml))
+    }
+
+    @Test
     fun rdf() {
         val feed = parser.parse(fixture("rdf.xml"), "https://rdf.example.org/rss")
         assertEquals("RDF Example", feed.title)
