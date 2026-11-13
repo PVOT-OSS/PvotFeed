@@ -17,8 +17,12 @@ import org.prauga.feed.feed.FeedScreen
 import org.prauga.feed.feed.FeedViewModel
 import org.prauga.feed.reader.ReaderScreen
 import org.prauga.feed.reader.ReaderViewModel
+import org.prauga.feed.settings.AboutScreen
+import org.prauga.feed.settings.SettingsScreen
 import org.prauga.feed.setup.SetupScreen
 import org.prauga.feed.setup.SetupViewModel
+import org.prauga.feed.sources.SourcesScreen
+import org.prauga.feed.sources.SourcesViewModel
 import org.prauga.feed.story.StoryScreen
 
 @Serializable data object SetupKey : NavKey
@@ -29,14 +33,25 @@ import org.prauga.feed.story.StoryScreen
 
 @Serializable data class ReaderKey(val articleId: Long) : NavKey
 
+@Serializable data class SourcesKey(val link: String? = null) : NavKey
+
 @Serializable data object TopicsKey : NavKey
+
+@Serializable data object SettingsKey : NavKey
+
+@Serializable data object AboutKey : NavKey
 
 @Composable
 fun FeedNavigation(container: AppContainer, sharedLink: String?, onSharedLinkHandled: () -> Unit) {
     val backStack = rememberNavBackStack(if (container.preferences.setupDone) FeedKey else SetupKey)
     val back: () -> Unit = { backStack.removeLastOrNull() }
 
-    LaunchedEffect(sharedLink) { if (sharedLink != null) onSharedLinkHandled() }
+    LaunchedEffect(sharedLink) {
+        if (sharedLink != null) {
+            if (container.preferences.setupDone) backStack.add(SourcesKey(sharedLink))
+            onSharedLinkHandled()
+        }
+    }
 
     NavDisplay(
         backStack = backStack,
@@ -72,8 +87,8 @@ fun FeedNavigation(container: AppContainer, sharedLink: String?, onSharedLinkHan
                             if (story.articles.size == 1) backStack.add(ReaderKey(story.lead.article.id))
                             else backStack.add(StoryKey(story.id))
                         },
-                        onOpenSources = { backStack.add(TopicsKey) },
-                        onOpenSettings = {},
+                        onOpenSources = { backStack.add(SourcesKey()) },
+                        onOpenSettings = { backStack.add(SettingsKey) },
                     )
                 }
                 entry<StoryKey> { key ->
@@ -93,6 +108,24 @@ fun FeedNavigation(container: AppContainer, sharedLink: String?, onSharedLinkHan
                         onBack = back,
                     )
                 }
+                entry<SourcesKey> { key ->
+                    SourcesScreen(
+                        viewModel = viewModel { SourcesViewModel(container.sources, container.feed) },
+                        initialLink = key.link,
+                        onChooseTopics = { backStack.add(TopicsKey) },
+                        onBack = back,
+                    )
+                }
+                entry<SettingsKey> {
+                    SettingsScreen(
+                        preferences = container.preferences,
+                        sources = container.sources,
+                        onOpenSources = { backStack.add(SourcesKey()) },
+                        onOpenAbout = { backStack.add(AboutKey) },
+                        onBack = back,
+                    )
+                }
+                entry<AboutKey> { AboutScreen(onBack = back) }
             },
     )
 }
