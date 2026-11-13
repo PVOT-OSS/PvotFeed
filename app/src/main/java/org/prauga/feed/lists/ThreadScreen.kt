@@ -160,7 +160,7 @@ private fun Lines(lines: List<String>) {
                             color = if (part.quoted) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,
                         )
                     }
-                is Part.Code -> Code(part.lines)
+                is Part.Code -> Code(part.lines, part.patch)
             }
         }
     }
@@ -168,7 +168,7 @@ private fun Lines(lines: List<String>) {
 
 /** Patches, diffstats and indented text keep their columns and scroll sideways. */
 @Composable
-private fun Code(lines: List<String>) {
+private fun Code(lines: List<String>, patch: Boolean) {
     val colors = MaterialTheme.colorScheme
     val added = Color(0xFF3FB950)
     val removed = Color(0xFFF85149)
@@ -177,6 +177,7 @@ private fun Code(lines: List<String>) {
             val color =
                 when {
                     line.startsWith(">") -> colors.onSurfaceVariant
+                    !patch -> colors.onSurface
                     line.startsWith("+++") || line.startsWith("---") || line.startsWith("diff --git") -> colors.onSurface
                     line.startsWith("+") -> added
                     line.startsWith("-") -> removed
@@ -201,7 +202,8 @@ private fun Code(lines: List<String>) {
 private sealed interface Part {
     data class Prose(val text: String, val quoted: Boolean) : Part
 
-    data class Code(val lines: List<String>) : Part
+    /** [patch]: the lines come from a diff, so + and - lines are coloured. */
+    data class Code(val lines: List<String>, val patch: Boolean = false) : Part
 }
 
 /**
@@ -218,13 +220,16 @@ private fun layout(lines: List<String>): List<Part> {
         if (prose.isNotBlank()) parts += Part.Prose(prose.toString().trim(), proseQuoted)
         prose.clear()
     }
+    var inPatch = false
     fun flushCode() {
-        if (code.isNotEmpty()) parts += Part.Code(code.toList())
+        if (code.isNotEmpty()) parts += Part.Code(code.toList(), inPatch)
         code.clear()
     }
-    var inPatch = false
     for (raw in lines) {
-        if (raw.startsWith("diff --git")) inPatch = true
+        if (raw.startsWith("diff --git") && !inPatch) {
+            flushCode()
+            inPatch = true
+        }
         val quoted = raw.startsWith(">")
         val text = if (quoted) raw.removePrefix(">").removePrefix(" ") else raw
         val structured =
