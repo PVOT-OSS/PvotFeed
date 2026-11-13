@@ -15,6 +15,8 @@ import androidx.navigation3.ui.NavDisplay
 import kotlinx.serialization.Serializable
 import org.prauga.feed.feed.FeedScreen
 import org.prauga.feed.feed.FeedViewModel
+import org.prauga.feed.reader.ReaderScreen
+import org.prauga.feed.reader.ReaderViewModel
 import org.prauga.feed.setup.SetupScreen
 import org.prauga.feed.setup.SetupViewModel
 import org.prauga.feed.story.StoryScreen
@@ -24,6 +26,8 @@ import org.prauga.feed.story.StoryScreen
 @Serializable data object FeedKey : NavKey
 
 @Serializable data class StoryKey(val id: Long) : NavKey
+
+@Serializable data class ReaderKey(val articleId: Long) : NavKey
 
 @Serializable data object TopicsKey : NavKey
 
@@ -65,7 +69,8 @@ fun FeedNavigation(container: AppContainer, sharedLink: String?, onSharedLinkHan
                     FeedScreen(
                         viewModel = viewModel { FeedViewModel(container.feed, container.sources) },
                         onOpenStory = { story ->
-                            backStack.add(StoryKey(story.id))
+                            if (story.articles.size == 1) backStack.add(ReaderKey(story.lead.article.id))
+                            else backStack.add(StoryKey(story.id))
                         },
                         onOpenSources = { backStack.add(TopicsKey) },
                         onOpenSettings = {},
@@ -75,7 +80,16 @@ fun FeedNavigation(container: AppContainer, sharedLink: String?, onSharedLinkHan
                     StoryScreen(
                         storyId = key.id,
                         feed = container.feed,
-                        onOpenArticle = {},
+                        onOpenArticle = { backStack.add(ReaderKey(it)) },
+                        onBack = back,
+                    )
+                }
+                entry<ReaderKey> { key ->
+                    ReaderScreen(
+                        viewModel =
+                            viewModel(key = "reader-${key.articleId}") {
+                                ReaderViewModel(key.articleId, container.reader, container.feed, container.preferences)
+                            },
                         onBack = back,
                     )
                 }
